@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    parameters {
+        booleanParam(name: 'dryRun', defaultValue: false)
+        string(name: 'releaseVersion', defaultValue: '')
+        string(name: 'developmentVersion', defaultValue: '')
+    }
+
+    stage('Release') {
+        steps {
+            sh "mvn --batch-mode -DdryRun=${param.dryRun} " +
+            "-DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} " +
+            "release:prepare"
+        }
+    }
+}
