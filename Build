@@ -7,11 +7,15 @@ pipeline {
         string(name: 'developmentVersion', defaultValue: '')
     }
 
-    stage('Release') {
-        steps {
-            sh "mvn --batch-mode -DdryRun=${param.dryRun} " +
-            "-DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} " +
-            "release:prepare"
+    stages {
+
+        stage('Release') {
+            steps {
+                sh "mvn --batch-mode -DdryRun=${param.dryRun} " +
+                "-DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} " +
+                "release:prepare"
+            }
         }
     }
+
 }
