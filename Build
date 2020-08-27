@@ -7,6 +7,11 @@ pipeline {
         string(name: 'developmentVersion', defaultValue: '')
     }
 
+    tools {
+        mvn: '3.6.3'
+        jdk: '14.0.2'
+    }
+
     stages {
 
         stage('Release') {
