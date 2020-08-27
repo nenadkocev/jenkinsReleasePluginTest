@@ -11,7 +11,7 @@ pipeline {
 
         stage('Release') {
             steps {
-                sh "mvn --batch-mode -DdryRun=${param.dryRun} " +
+                sh "mvn --batch-mode -DdryRun=${params.dryRun} " +
                 "-DdevelopmentVersion=${params.developmentVersion} -DreleaseVersion=${params.releaseVersion} " +
                 "release:prepare"
             }
